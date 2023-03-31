@@ -6,16 +6,8 @@ import 'package:justtodo/widget/add_todo_text_form_field.dart';
 import 'package:justtodo/widget/header_tab_menu.dart';
 import 'package:justtodo/widget/todo_item.dart';
 
-void main() {
-  final database = LocalDatabase();
-
-  GetIt.I.registerSingleton<LocalDatabase>(database);
-
-  runApp(const App());
-}
-
-class App extends StatelessWidget {
-  const App({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   // This widget is the root of your application.
   @override
@@ -85,8 +77,6 @@ class App extends StatelessWidget {
                                 GetIt.I<LocalDatabase>().insertTodo(
                               TodosCompanion(
                                 title: Value(value),
-                                updatedAt: Value(DateTime.now()),
-                                createdAt: Value(DateTime.now()),
                                 // isCompleted: false,
                               ),
                             ),

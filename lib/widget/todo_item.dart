@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:justtodo/config/drift_database.dart';
 
 class TodoItem extends StatefulWidget {
   const TodoItem({
@@ -6,7 +7,7 @@ class TodoItem extends StatefulWidget {
     required this.todoItem,
   });
 
-  final String todoItem;
+  final Todo todoItem;
 
   @override
   State<TodoItem> createState() => _TodoItemState();
@@ -48,7 +49,7 @@ class _TodoItemState extends State<TodoItem> {
                     height: 16.0,
                   ),
                   Text(
-                    '투두 타이틀 ${widget.todoItem}',
+                    widget.todoItem.title,
                     style: _isChecked
                         ? const TextStyle(
                             fontSize: 15.0,
@@ -62,9 +63,9 @@ class _TodoItemState extends State<TodoItem> {
                   const SizedBox(
                     height: 3.0,
                   ),
-                  const Text(
-                    '투두 설명을 추가할 수 있습니다.',
-                    style: TextStyle(
+                  Text(
+                    widget.todoItem.content ?? '투두 설명',
+                    style: const TextStyle(
                       fontSize: 10.0,
                       color: Color.fromRGBO(0, 0, 0, 0.4),
                     ),
@@ -74,9 +75,9 @@ class _TodoItemState extends State<TodoItem> {
             ],
           ),
           if (_isChecked)
-            const Text(
-              "08:32",
-              style: TextStyle(
+            Text(
+              widget.todoItem.completedAt.toString(),
+              style: const TextStyle(
                 fontSize: 10.0,
                 color: Color.fromRGBO(0, 0, 0, 0.4),
               ),
